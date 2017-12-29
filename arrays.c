@@ -39,7 +39,7 @@ int str_len(char s[]) {
 int slen(char s[]) {
     char *p = s;
     printf("&s = %p, *s = %c\n", s, *s);
-    while (*p++) printf("Loop: &p = %p, *p = %c\n", p, *p); // *p++ = *(p++) since postfix ++ has higher precedence.
+    while (++(*p)) printf("Loop: &p = %p, *p = %c\n", p, *p); // *p++ = *(p++) since postfix ++ has higher precedence.
     printf("Break: &p = %p, *p = %c\n", p, *p);
     return (p-s-1); // Seems like the value after the final index isn't null - there's an extra iteration.
 }
