@@ -1,6 +1,14 @@
 #include <stdio.h>
 
-/* Need to declare functions before  */
+/* Topics Covered:
+ * Typed and void pointers
+ * Structs
+ * Enumerations and switch cases 
+ * Passing by ref vs. copy (value) */
+
+typedef enum { red, green, blue } Color;
+
+// Need to declare functions before they're called in the main function.
 void var_ptrs() {
     int *x; // variable x is an	address to an int
     int y = 9; // y	is an int
@@ -20,6 +28,7 @@ void var_ptrs() {
 }
 
 void struct_ptrs() {
+    /* A struct is like a Java class without the methods */
     typedef struct { int x, y; } Point;
     Point pt = { 0, 5 };
     Point *pt_ptr = &pt;
@@ -36,10 +45,28 @@ void pass_by_ref_or_val(int x, int *p) {
     *p = -9;
 }
 
+void pants_color(Color pants) {
+    switch (pants) {
+        case red:
+            printf("Red pants are hip\n");
+            break;
+        case green:
+            printf("Green pants are weird\n");
+            break;
+        default:
+            printf("Color not recognized\n");
+    }
+    printf("pants = %d\n", pants); 
+    /* If you wanted to print the key (Color) instead of the enumerated value, 
+     * you'd have to use a switch function or an array map. */
+}
+
 void main() {
     var_ptrs();
     struct_ptrs();
     int a = 1, b = -3;
     pass_by_ref_or_val(a, &b);
     printf("a = %d b = %d\n", a, b);
+    Color pants = green;
+    pants_color(pants);
 }

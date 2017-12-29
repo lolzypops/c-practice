@@ -1,5 +1,12 @@
 #include <stdio.h>
 
+/* Topics Covered:
+ * Array bounds
+ * Array pointer
+ * Pointer to pointer
+ * Strings as char arrays
+ * Precedence of dereferencing vs. incrementation (postfix and prefix) */
+
 void bound_check() {
     int a[] = { 1, 2, 3 };
     for (int i=0; i<4; i++) {
@@ -41,7 +48,7 @@ int slen(char s[]) {
     printf("&s = %p, *s = %c\n", s, *s);
     while (*p++) printf("Loop: &p = %p, *p = %c\n", p, *p); 
     /* *p++ = *(p++) since postfix ++ has higher precedence. 
-     * The derefernence refers to the address p is pointing to before it's incremented by definition of postfix ++. */
+     * The dereference refers to the address p is pointing to before it's incremented by definition of postfix ++. */
     printf("Break: &p = %p, *p = %c\n", p, *p);
     return (p-s-1); // Minus 1 because we increment p once more before the loop breaks.
 }
