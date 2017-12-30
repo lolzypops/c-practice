@@ -1,17 +1,20 @@
 #include <stdio.h>
+#include <stdlib.h>
 
 /* Topics Covered:
  * Typed and void pointers
  * Structs
  * Enumerations and switch cases 
- * Passing by ref vs. copy (value) */
+ * Passing by ref vs. copy (value) 
+ * Pointer to pointer vs. pointer
+ * - stackoverflow.com/questions/5580761/ */
 
 typedef enum { red, green, blue } Color;
 
 // Need to declare functions before they're called in the main function.
 void var_ptrs() {
     int *x; // variable x is an	address to an int
-    int y = 9; // y	is an int
+    int y = 9; // y is an int
     void *a; // generic pointer - can't be dereferenced
     char b = 'b';
     a = &b;
@@ -61,6 +64,16 @@ void pants_color(Color pants) {
      * you'd have to use a switch function or an array map. */
 }
 
+void alloc2(int** p) {
+    *p = (int*)malloc(sizeof(int));
+    **p = 10;
+}
+
+void alloc1(int* p) {
+    p = (int*)malloc(sizeof(int));
+    *p = 10;
+}
+
 void main() {
     var_ptrs();
     struct_ptrs();
@@ -69,4 +82,10 @@ void main() {
     printf("a = %d b = %d\n", a, b);
     Color pants = green;
     pants_color(pants);
+    int *p;
+    alloc1(p);
+    //printf("%d ",*p);//value is undefined
+    alloc2(&p);
+    printf("%d\n",*p);//will print 10
+    free(p);
 }
